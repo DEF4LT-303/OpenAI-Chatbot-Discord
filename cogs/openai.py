@@ -14,18 +14,19 @@ class Chat(commands.Cog):
 
     prompt = arg
 
-    completions = openai.Completion.create(
-    engine="text-davinci-002",
+    response = openai.Completion.create(
+    model="text-davinci-003",
     prompt=prompt,
-    max_tokens=1024,
-    n=1,
-    stop=None,
     temperature=0.5,
+    max_tokens=60,
+    top_p=0.3,
+    frequency_penalty=0.5,
+    presence_penalty=0.0
   )
 
     print(prompt)
 
-    message = completions.choices[0].text
+    message = response.choices[0].text
     await ctx.send(message)
 
 
