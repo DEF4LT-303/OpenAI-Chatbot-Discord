@@ -1,8 +1,8 @@
 from main import *
 import openai
 
-
 openai.api_key = os.environ['openai_api']
+
 
 class Chat(commands.Cog):
 
@@ -21,17 +21,13 @@ class Chat(commands.Cog):
 
       prompt = prompt.join(message_raw[1:])
 
-      # await self.chat(prompt)
-
-      response = openai.Completion.create(
-      model="text-davinci-003",
-      prompt=prompt,
-      temperature=0.5,
-      max_tokens=60,
-      top_p=0.3,
-      frequency_penalty=0.5,
-      presence_penalty=0.0
-    )
+      response = openai.Completion.create(model="text-davinci-003",
+                                          prompt=prompt,
+                                          temperature=0.5,
+                                          max_tokens=60,
+                                          top_p=0.3,
+                                          frequency_penalty=0.5,
+                                          presence_penalty=0.0)
 
       response_text = response.choices[0].text
       await message.reply(response_text)
@@ -41,15 +37,13 @@ class Chat(commands.Cog):
 
     prompt = arg
 
-    response = openai.Completion.create(
-    model="text-davinci-003",
-    prompt=prompt,
-    temperature=0.5,
-    max_tokens=60,
-    top_p=0.3,
-    frequency_penalty=0.5,
-    presence_penalty=0.0
-  )
+    response = openai.Completion.create(model="text-davinci-003",
+                                        prompt=prompt,
+                                        temperature=0.5,
+                                        max_tokens=60,
+                                        top_p=0.3,
+                                        frequency_penalty=0.5,
+                                        presence_penalty=0.0)
 
     print(prompt)
 
