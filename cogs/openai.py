@@ -15,6 +15,9 @@ class Chat(commands.Cog):
     if message.author.bot:
       return
 
+    if message.mention_everyone:
+        return
+
     if client.user.mentioned_in(message):
       message_raw = message.content.split()
       prompt = ' '
